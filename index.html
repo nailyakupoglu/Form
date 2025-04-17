@@ -1,5 +1,3 @@
-Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bölümünün adını İklimlendirme Teknolojileri olarak değiştirdim. Ayrıca sonraki bölümlerin numaralarını güncelledim.
-
 <!DOCTYPE html>
 <html lang="tr">
     <!DOCTYPE html>
@@ -151,103 +149,11 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                 </div>
             </div>
 
-            <!-- 3. Sensörler -->
+           
+
+            <!-- 3. Güvenlik Sistemleri -->
             <div class="form-container section">
-                <div class="section-title">3. Sensörler</div>
-                <div class="form-row">
-                    <div class="form-col">
-                        <div class="item-group" data-description="Alanda hareket algılayan sensör.">
-                            <img src="images/motion-sensor.png" alt="Hareket Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="motionSensor" name="motionSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="motionSensor" class="item-label">Hareket Sensörü</label>
-                            <input type="number" name="motionSensor_quantity" min="0" value="0" class="item-quantity">
-                             <div class="item-tooltip"></div>
-                       </div>
-
-                        <div class="item-group" data-description="Sabit duran varlığı bile algılayan gelişmiş sensör.">
-                            <img src="images/presence-sensor.png" alt="Varlık Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="presenceSensor" name="presenceSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="presenceSensor" class="item-label">Varlık Sensörü</label>
-                            <input type="number" name="presenceSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Kapı ve pencerelerin açılıp kapandığını bildirir.">
-                            <img src="images/door-sensor.png" alt="Kapı Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="doorSensor" name="doorSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="doorSensor" class="item-label">Kapı/Pencere Sensörü</label>
-                            <input type="number" name="doorSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Doğalgaz sızıntısını algılar.">
-                             <img src="images/gas-sensor.png" alt="Gaz Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="gasSensor" name="gasSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="gasSensor" class="item-label">Doğalgaz Sensörü</label>
-                            <input type="number" name="gasSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Dumanı algılayarak yangın uyarısı verir.">
-                            <img src="images/smoke-sensor.png" alt="Duman Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="smokeSensor" name="smokeSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="smokeSensor" class="item-label">Duman Sensörü</label>
-                            <input type="number" name="smokeSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Su sızıntısı veya baskınını algılar.">
-                             <img src="images/flood-sensor.png" alt="Su Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="floodSensor" name="floodSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="floodSensor" class="item-label">Su Baskını Sensörü</label>
-                            <input type="number" name="floodSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-col">
-                        <div class="item-group" data-description="Ortamın sıcaklık ve nemini ölçer.">
-                            <img src="images/temp-sensor.png" alt="Sıcaklık Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="tempSensor" name="tempSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="tempSensor" class="item-label">Nem ve Sıcaklık Sensörü</label>
-                            <input type="number" name="tempSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Hava kalitesini (partikül, VOC vb.) ölçer.">
-                            <img src="images/air-sensor.png" alt="Hava Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="airSensor" name="airSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="airSensor" class="item-label">Hava Kalitesi Sensörü</label>
-                            <input type="number" name="airSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Karbon monoksit gazı seviyesini algılar.">
-                             <img src="images/co-sensor.png" alt="CO Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="coSensor" name="coSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="coSensor" class="item-label">Karbon Monoksit Sensörü</label>
-                            <input type="number" name="coSensor_quantity" min="0" value="0" class="item-quantity">
-                            <div class="item-tooltip"></div>
-                        </div>
-
-                        <div class="item-group" data-description="Darbe veya titreşimi algılar (örn. cam kırılması).">
-                            <img src="images/vibration-sensor.png" alt="Titreşim Sensörü" class="item-image"> <!-- Placeholder image path -->
-                            <input type="checkbox" id="vibrationSensor" name="vibrationSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="vibrationSensor" class="item-label">Titreşim Sensörü</label>
-                            <input type="number" name="vibrationSensor_quantity" min="0" value="0" class="item-quantity">
-                             <div class="item-tooltip"></div>
-                       </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="sensorNotes">Ekstra Notlar</label>
-                    <textarea id="sensorNotes" name="sensorNotes" title="Sensörlerle ilgili ek istekleriniz."></textarea>
-                </div>
-            </div>
-
-            <!-- 4. Güvenlik Sistemleri -->
-            <div class="form-container section">
-                <div class="section-title">4. Güvenlik Sistemleri</div>
+                <div class="section-title">3. Güvenlik Sistemleri</div>
                 <div class="form-row">
                     <div class="form-col">
                          <div class="item-group" data-description="Görüntülü güvenlik izleme kamerası.">
@@ -291,9 +197,9 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                 </div>
             </div>
 
-            <!-- 5. İklimlendirme Teknolojileri -->
+            <!-- 4. İklimlendirme Teknolojileri -->
             <div class="form-container section">
-                <div class="section-title">5. İklimlendirme Teknolojileri</div>
+                <div class="section-title">4. İklimlendirme Teknolojileri</div>
                 <div class="form-row">
                     <div class="form-col">
                         <div class="item-group" data-description="Isıtma/soğutmayı akıllı yöneten termostat.">
@@ -353,6 +259,99 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                     <textarea id="hvacNotes" name="hvacNotes" title="İklimlendirme ile ilgili ek istekleriniz."></textarea>
                 </div>
             </div>
+ <!-- 5. Sensörler -->
+ <div class="form-container section">
+    <div class="section-title">5. Sensörler</div>
+    <div class="form-row">
+        <div class="form-col">
+            <div class="item-group" data-description="Alanda hareket algılayan sensör.">
+                <img src="images/motion-sensor.png" alt="Hareket Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="motionSensor" name="motionSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="motionSensor" class="item-label">Hareket Sensörü</label>
+                <input type="number" name="motionSensor_quantity" min="0" value="0" class="item-quantity">
+                 <div class="item-tooltip"></div>
+           </div>
+
+            <div class="item-group" data-description="Sabit duran varlığı bile algılayan gelişmiş sensör.">
+                <img src="images/presence-sensor.png" alt="Varlık Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="presenceSensor" name="presenceSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="presenceSensor" class="item-label">Varlık Sensörü</label>
+                <input type="number" name="presenceSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Kapı ve pencerelerin açılıp kapandığını bildirir.">
+                <img src="images/door-sensor.png" alt="Kapı Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="doorSensor" name="doorSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="doorSensor" class="item-label">Kapı/Pencere Sensörü</label>
+                <input type="number" name="doorSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Doğalgaz sızıntısını algılar.">
+                 <img src="images/gas-sensor.png" alt="Gaz Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="gasSensor" name="gasSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="gasSensor" class="item-label">Doğalgaz Sensörü</label>
+                <input type="number" name="gasSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Dumanı algılayarak yangın uyarısı verir.">
+                <img src="images/smoke-sensor.png" alt="Duman Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="smokeSensor" name="smokeSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="smokeSensor" class="item-label">Duman Sensörü</label>
+                <input type="number" name="smokeSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Su sızıntısı veya baskınını algılar.">
+                 <img src="images/flood-sensor.png" alt="Su Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="floodSensor" name="floodSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="floodSensor" class="item-label">Su Baskını Sensörü</label>
+                <input type="number" name="floodSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+        </div>
+
+        <div class="form-col">
+            <div class="item-group" data-description="Ortamın sıcaklık ve nemini ölçer.">
+                <img src="images/temp-sensor.png" alt="Sıcaklık Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="tempSensor" name="tempSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="tempSensor" class="item-label">Nem ve Sıcaklık Sensörü</label>
+                <input type="number" name="tempSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Hava kalitesini (partikül, VOC vb.) ölçer.">
+                <img src="images/air-sensor.png" alt="Hava Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="airSensor" name="airSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="airSensor" class="item-label">Hava Kalitesi Sensörü</label>
+                <input type="number" name="airSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Karbon monoksit gazı seviyesini algılar.">
+                 <img src="images/co-sensor.png" alt="CO Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="coSensor" name="coSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="coSensor" class="item-label">Karbon Monoksit Sensörü</label>
+                <input type="number" name="coSensor_quantity" min="0" value="0" class="item-quantity">
+                <div class="item-tooltip"></div>
+            </div>
+
+            <div class="item-group" data-description="Darbe veya titreşimi algılar (örn. cam kırılması).">
+                <img src="images/vibration-sensor.png" alt="Titreşim Sensörü" class="item-image"> <!-- Placeholder image path -->
+                <input type="checkbox" id="vibrationSensor" name="vibrationSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                <label for="vibrationSensor" class="item-label">Titreşim Sensörü</label>
+                <input type="number" name="vibrationSensor_quantity" min="0" value="0" class="item-quantity">
+                 <div class="item-tooltip"></div>
+           </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sensorNotes">Ekstra Notlar</label>
+        <textarea id="sensorNotes" name="sensorNotes" title="Sensörlerle ilgili ek istekleriniz."></textarea>
+    </div>
+</div>
 
             <!-- 6. Perde ve Kapı Sistemleri -->
             <div class="form-container section">
@@ -402,7 +401,7 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                         </div>
 
                          <div class="item-group" data-description="Açılır kapanır tavan ve yanları kontrol eden pergola sistemi.">
-                            <img src="images/pergola-curtain.png" alt="Pergola Perde" class="item-image"> <!-- Placeholder image path -->
+                            <img src="images/pergola-curtain.png" alt="Pergola" class="item-image"> <!-- Placeholder image path -->
                             <input type="checkbox" id="pergolaCurtain" name="pergolaCurtain_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
                             <label for="pergolaCurtain" class="item-label">Pergola</label>
                             <input type="number" name="pergolaCurtain_quantity" min="0" value="0" class="item-quantity">
