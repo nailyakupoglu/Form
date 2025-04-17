@@ -1,0 +1,487 @@
+:root {
+    /* --- Futuristic Background Variables --- */
+
+    /* Base Background Color */
+    --bg-base-color: #0a0c16; /* Very dark blue/near black */
+
+    /* Main Animated Gradient Colors (Slow Moving Nebula) */
+    --grad-color-1: #1a237e; /* Deep Indigo */
+    --grad-color-2: #004d40; /* Dark Teal */
+    --grad-color-3: #3f2a85; /* Deep Purple */
+
+    /* Accent Gradient Colors (Subtle Faster Streaks/Glow) */
+    --accent-color-1: rgba(0, 212, 255, 0.3);  /* Lighter Cyan (with alpha) */
+    --accent-color-2: rgba(94, 23, 235, 0.2);   /* Accent Purple (with alpha) */
+
+    /* Subtle Pattern Overlay */
+    --pattern-color: rgba(0, 212, 255, 0.04); /* Faint Cyan for pattern */
+    --pattern-size: 50px; /* Size of the repeating pattern element */
+
+    /* Animation Durations */
+    --gradient-duration: 25s;
+    --accent-duration: 15s;
+    --pattern-duration: 40s; /* Slow pan for the pattern */
+
+    /* --- Your Existing Form Variables (Keep these) --- */
+    --primary-color: #0066ff;
+    --secondary-color: #00d4ff;
+    --accent-color: #5e17eb;
+    --dark-color: #121212; /* Used by form container, keep for reference */
+    --light-color: #f8f9fa;
+    --success-color: #00e676;
+    --warning-color: #ffea00;
+    --danger-color: #ff3d00;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 32px rgba(0, 102, 255, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+    color: var(--light-color);
+    line-height: 1.6;
+    padding: 20px; /* Keep padding if you like it */
+    min-height: 100vh; /* Ensure background covers full height */
+    overflow-x: hidden; /* Prevent horizontal scrollbars from large backgrounds */
+
+    /* --- Futuristic Background --- */
+    background-color: var(--bg-base-color);
+
+    /* Layer Order: Pattern -> Accent Gradient -> Main Gradient */
+    background-image:
+        /* 1. Subtle repeating grid pattern */
+        linear-gradient(var(--pattern-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--pattern-color) 1px, transparent 1px),
+
+        /* 2. Faster moving accent streaks/glow */
+        radial-gradient(circle at 10% 10%, var(--accent-color-1) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, var(--accent-color-2) 0%, transparent 40%),
+
+        /* 3. Main slow-moving nebula gradient */
+        radial-gradient(ellipse at 70% 20%, var(--grad-color-1) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 80%, var(--grad-color-2) 0%, transparent 60%),
+        linear-gradient(135deg, transparent 30%, var(--grad-color-3) 100%);
+
+    background-size:
+        /* Pattern size */
+        var(--pattern-size) var(--pattern-size),
+        var(--pattern-size) var(--pattern-size),
+
+        /* Accent gradient sizes */
+        800px 800px,
+        900px 900px,
+
+        /* Main gradient sizes (large for smooth animation) */
+        150% 150%,
+        120% 120%,
+        100% 100%; /* Linear gradient needs 100% */
+
+    background-position:
+        /* Initial positions */
+        0 0, /* Pattern */
+        0 0, /* Pattern */
+        10% 10%, /* Accent 1 */
+        90% 80%, /* Accent 2 */
+        70% 20%, /* Main Radial 1 */
+        30% 80%, /* Main Radial 2 */
+        0% 0%;   /* Main Linear */
+
+    background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+
+    animation:
+        animatedPattern var(--pattern-duration) linear infinite, /* Animate Pattern Layer 1 */
+        animatedPattern var(--pattern-duration) linear infinite reverse, /* Animate Pattern Layer 2 (optional reverse) */
+        animatedAccent var(--accent-duration) ease-in-out infinite alternate, /* Animate Accent Layer 1 */
+        animatedAccent2 var(--accent-duration) ease-in-out infinite alternate-reverse, /* Animate Accent Layer 2 */
+        animatedGradient var(--gradient-duration) ease-in-out infinite alternate, /* Animate Main Layer 1 */
+        animatedGradient var(--gradient-duration) ease-in-out infinite alternate-reverse, /* Animate Main Layer 2 */
+        animatedGradient var(--gradient-duration) ease-in-out infinite alternate; /* Animate Main Layer 3 */
+}
+
+/* Keyframes for Animations */
+
+@keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes animatedAccent {
+    from { background-position: 0% 0%; opacity: 0.8; }
+    to   { background-position: 50% 100%; opacity: 1; }
+}
+@keyframes animatedAccent2 {
+    from { background-position: 100% 100%; opacity: 1; }
+    to   { background-position: 0% 50%; opacity: 0.8; }
+}
+
+@keyframes animatedPattern {
+    0% { background-position: 0 0; }
+    100% { background-position: calc(var(--pattern-size) * 2) calc(var(--pattern-size) * 2); } /* Pan two pattern units */
+}
+
+
+/* --- Rest of your existing form styles --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+     position: relative; /* Ensure form elements are above the body background */
+     z-index: 1;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative; /* Keep relative if other elements rely on it */
+}
+
+.form-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(94, 23, 235, 0.3);
+    /* Adjust margin if needed after logo removal */
+    margin-top: 30px; /* Add some top margin */
+}
+
+.form-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Give form containers a slightly more distinct background */
+.form-container {
+    background: rgba(18, 18, 18, 0.2); /* Slightly darker than body bg, more opacity */
+    backdrop-filter: blur(12px) saturate(150%); /* Increased blur/saturation */
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.12); /* Slightly stronger border */
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 40px;
+     position: relative; /* Context for potential pseudo-elements if needed */
+     z-index: 2; /* Make sure form sections are above body bg */
+}
+
+/* (Keep all other form-specific styles: .section, .section-title, .form-group, etc.) */
+.section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    position: relative;
+}
+
+.section-title::before {
+    content: "";
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    margin-right: 15px;
+    border-radius: 3px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.form-col {
+    flex: 1;
+    padding: 0 10px;
+    min-width: 250px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    color: var(--light-color);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.item-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    position: relative;
+}
+
+.item-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.item-tooltip {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    max-width: 250px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    z-index: 1000;
+    white-space: normal;
+    text-align: left;
+}
+
+.item-group:hover .item-tooltip {
+    display: block;
+}
+
+.item-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+}
+
+.item-checkbox {
+    margin-right: 15px;
+    width: auto;
+}
+
+.item-label {
+    flex: 3;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.item-quantity {
+    flex: 1;
+    max-width: 100px;
+    display: none;
+    margin-left: 10px;
+    title: "İstenilen adet (isteğe bağlı)."
+}
+
+.item-quantity.active {
+    display: block;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background: rgba(0, 102, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+.checkbox-item input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.checkbox-item label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.scene-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.scene-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.scene-item:hover {
+    background: rgba(0, 102, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scene-item h4 {
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.submit-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+}
+
+.note {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .form-col {
+        flex: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-header h1 {
+        font-size: 2rem;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    /* Adjust background sizes for smaller screens if needed */
+    body {
+       background-size:
+            /* Pattern size */
+            calc(var(--pattern-size) * 0.8) calc(var(--pattern-size) * 0.8),
+            calc(var(--pattern-size) * 0.8) calc(var(--pattern-size) * 0.8),
+
+            /* Accent gradient sizes */
+            600px 600px,
+            700px 700px,
+
+            /* Main gradient sizes (still large) */
+            180% 180%,
+            150% 150%,
+            100% 100%;
+    }
+}
+
+
+Explanation of the Background:
+
+body Styling:
+
+background-color: var(--bg-base-color);: Sets the fallback and deepest color.
+
+background-image:: Defines multiple layers, separated by commas. The topmost layer is listed first.
+
+Pattern: Two linear-gradient definitions create a simple grid using 1px lines with the faint --pattern-color.
+
+Accent Gradients: Two radial-gradient layers add pools of brighter, semi-transparent accent colors.
+
+Main Gradients: Two radial-gradient and one linear-gradient create the larger, slower-moving "nebula" effect with the primary gradient colors.
+
+background-size:: Controls the size of each corresponding background image layer. The main gradients are set larger than 100% so that when their position animates, different parts of the gradient become visible.
+
+background-position:: Sets the initial starting position for each layer.
+
+background-repeat:: The pattern layers repeat; the gradient layers do not.
+
+animation:: Applies the @keyframes animations to the corresponding background layers. Notice how different animations and durations are used for different layers to create varied movement. alternate and alternate-reverse help make the looping less obvious.
+
+overflow-x: hidden;: Prevents scrollbars appearing due to large background sizes moving.
+
+@keyframes:
+
+animatedGradient: Slowly shifts the background-position horizontally to make the large gradients appear to drift.
+
+animatedAccent & animatedAccent2: Move the accent gradients around more dynamically and slightly change opacity for a subtle pulse/glow.
+
+animatedPattern: Slowly pans the background-position of the grid pattern diagonally.
+
+Variables (:root): All colors and key timings are defined as CSS variables at the top, making it easy to tweak the look and feel without digging through the main CSS rules.
+
+Form Container Style Tweak: Slightly adjusted the .form-container background and added backdrop-filter for a more pronounced "glassmorphism" effect against the dynamic body background. Added z-index to ensure form elements are clearly above the body background layers.
+
+This combination creates a layered, subtly shifting background with depth and a futuristic feel, enhancing your form without being too distracting. You can easily adjust the --*duration variables to make the animations faster or slower, and change the --*-color variables to modify the palette.

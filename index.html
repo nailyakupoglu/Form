@@ -1,0 +1,827 @@
+Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bölümünün adını İklimlendirme Teknolojileri olarak değiştirdim. Ayrıca sonraki bölümlerin numaralarını güncelledim.
+
+<!DOCTYPE html>
+<html lang="tr"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EvoHaus - Kapsamlı Akıllı Ev Sistemi Formu</title>
+    
+        <!-- === LINK YOUR CSS FILE HERE === -->
+        <link rel="stylesheet" href="style.css">
+        <!-- =============================== -->
+    
+        <!-- Internal styles removed if you moved *everything* to style.css -->
+        <!-- Or you can keep some internal styles here if needed -->
+    
+    </head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>EvoHaus Geleceğin Akıllı Yaşam Ekosistemi</h1>
+            <p>Kişiselleştirilmiş akıllı yaşam çözümleriniz için aşağıdaki formu doldurarak geleceğin yaşam alanına adım atın.</p>
+        </div>
+
+        <form id="evohaus-comprehensive-form" action="https://n8n.evohaus.org/webhook-test/evolution-webhook" method="POST">
+            <!-- 1. Müşteri Bilgileri -->
+            <div class="form-container section">
+                <div class="section-title">1. Müşteri Bilgileri</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="fullName">Ad Soyad</label>
+                            <input type="text" id="fullName" name="fullName" required title="Müşterinin tam adı ve soyadı.">
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="contact">İletişim Bilgileri (Telefon/E-Posta)</label>
+                            <input type="text" id="contact" name="contact" required title="Müşterinin telefon numarası veya e-posta adresi.">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="projectAddress">Proje Adresi</label>
+                            <textarea id="projectAddress" name="projectAddress" required title="Akıllı sistemin kurulacağı adres."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="projectType">Proje Türü</label>
+                            <select id="projectType" name="projectType" required title="Kurulum yapılacak mekanın türü (daire, villa vb.).">
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="apartment">Daire/Apartman</option>
+                                <option value="villa">Villa</option>
+                                <option value="office">Ofis</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="projectSize">Proje Büyüklüğü (m²)</label>
+                            <input type="number" id="projectSize" name="projectSize" min="1" required title="Projenin metrekare cinsinden büyüklüğü.">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="projectStatus">Proje Durumu</label>
+                            <select id="projectStatus" name="projectStatus" required title="Projenin inşaat veya yenileme aşaması.">
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="newConstruction">Yeni İnşaat</option>
+                                <option value="renovation">Renovasyon</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Aydınlatma ve Akıllı Anahtar Sistemleri -->
+            <div class="form-container section">
+                <div class="section-title">2. Aydınlatma & Komuta Merkezi</div>
+
+                <div class="item-group"
+                     data-description="Uzaktan kontrol edilebilen, ayarlanabilir akıllı ampul."
+                     data-image="images/smart-bulb.png">
+                    <img src="images/smart-bulb.png" alt="Akıllı Ampul" class="item-image">
+                    <input type="checkbox" id="smartBulb" name="smartBulb_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="smartBulb" class="item-label">Akıllı Ampul</label>
+                    <input type="number" name="smartBulb_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="item-group" data-description="Bahçe, teras gibi dış alanlar için akıllı aydınlatma.">
+                    <img src="images/outdoor-light.png" alt="Dış Aydınlatma" class="item-image"> <!-- Placeholder image path -->
+                    <input type="checkbox" id="outdoorLight" name="outdoorLight_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="outdoorLight" class="item-label">Dış Mekan Aydınlatma</label>
+                    <input type="number" name="outdoorLight_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="item-group" data-description="Mevcut anahtarları akıllı hale getiren kontrol modülü.">
+                    <img src="images/smart-switch.png" alt="Akıllı Anahtar" class="item-image"> <!-- Placeholder image path -->
+                    <input type="checkbox" id="smartSwitch" name="smartSwitch_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="smartSwitch" class="item-label">Akıllı Anahtar</label>
+                    <input type="number" name="smartSwitch_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="item-group" data-description="Işık parlaklığını ayarlamaya yarayan akıllı anahtar.">
+                    <img src="images/dimmer-switch.png" alt="Dimmer Anahtar" class="item-image"> <!-- Placeholder image path -->
+                    <input type="checkbox" id="dimmerSwitch" name="dimmerSwitch_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="dimmerSwitch" class="item-label">Dimmer Anahtar</label>
+                    <input type="number" name="dimmerSwitch_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="item-group" data-description="Kontrol ve bilgi sunan ekranlı akıllı panel.">
+                    <img src="images/display-panel.png" alt="Ekranlı Panel" class="item-image"> <!-- Placeholder image path -->
+                    <input type="checkbox" id="displayPanel" name="displayPanel_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="displayPanel" class="item-label">Ekranlı Anahtar Panel</label>
+                    <input type="number" name="displayPanel_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="item-group" data-description="Elektrikli cihazları uzaktan kontrol etmek için röle.">
+                    <img src="images/smart-relay.png" alt="Akıllı Röle" class="item-image"> <!-- Placeholder image path -->
+                    <input type="checkbox" id="smartRelay" name="smartRelay_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                    <label for="smartRelay" class="item-label">Akıllı Röle</label>
+                    <input type="number" name="smartRelay_quantity" min="0" value="0" class="item-quantity">
+                    <div class="item-tooltip"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-item" title="İstenilen renkte aydınlatma seçeneği.">
+                        <input type="checkbox" id="rgbLighting" name="rgbLighting">
+                        <label for="rgbLighting">Renk Ayarlı Aydınlatma (RGB/RGBW)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lightingNotes">Ekstra Notlar</label>
+                    <textarea id="lightingNotes" name="lightingNotes" title="Aydınlatma ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 3. Sensörler -->
+            <div class="form-container section">
+                <div class="section-title">3. Sensörler</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Alanda hareket algılayan sensör.">
+                            <img src="images/motion-sensor.png" alt="Hareket Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="motionSensor" name="motionSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="motionSensor" class="item-label">Hareket Sensörü</label>
+                            <input type="number" name="motionSensor_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+
+                        <div class="item-group" data-description="Sabit duran varlığı bile algılayan gelişmiş sensör.">
+                            <img src="images/presence-sensor.png" alt="Varlık Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="presenceSensor" name="presenceSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="presenceSensor" class="item-label">Varlık Sensörü</label>
+                            <input type="number" name="presenceSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Kapı ve pencerelerin açılıp kapandığını bildirir.">
+                            <img src="images/door-sensor.png" alt="Kapı Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="doorSensor" name="doorSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="doorSensor" class="item-label">Kapı/Pencere Sensörü</label>
+                            <input type="number" name="doorSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Doğalgaz sızıntısını algılar.">
+                             <img src="images/gas-sensor.png" alt="Gaz Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="gasSensor" name="gasSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="gasSensor" class="item-label">Doğalgaz Sensörü</label>
+                            <input type="number" name="gasSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Dumanı algılayarak yangın uyarısı verir.">
+                            <img src="images/smoke-sensor.png" alt="Duman Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smokeSensor" name="smokeSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smokeSensor" class="item-label">Duman Sensörü</label>
+                            <input type="number" name="smokeSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Su sızıntısı veya baskınını algılar.">
+                             <img src="images/flood-sensor.png" alt="Su Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="floodSensor" name="floodSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="floodSensor" class="item-label">Su Baskını Sensörü</label>
+                            <input type="number" name="floodSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Ortamın sıcaklık ve nemini ölçer.">
+                            <img src="images/temp-sensor.png" alt="Sıcaklık Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="tempSensor" name="tempSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="tempSensor" class="item-label">Nem ve Sıcaklık Sensörü</label>
+                            <input type="number" name="tempSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Hava kalitesini (partikül, VOC vb.) ölçer.">
+                            <img src="images/air-sensor.png" alt="Hava Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="airSensor" name="airSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="airSensor" class="item-label">Hava Kalitesi Sensörü</label>
+                            <input type="number" name="airSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Karbon monoksit gazı seviyesini algılar.">
+                             <img src="images/co-sensor.png" alt="CO Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="coSensor" name="coSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="coSensor" class="item-label">Karbon Monoksit Sensörü</label>
+                            <input type="number" name="coSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Darbe veya titreşimi algılar (örn. cam kırılması).">
+                            <img src="images/vibration-sensor.png" alt="Titreşim Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="vibrationSensor" name="vibrationSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="vibrationSensor" class="item-label">Titreşim Sensörü</label>
+                            <input type="number" name="vibrationSensor_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sensorNotes">Ekstra Notlar</label>
+                    <textarea id="sensorNotes" name="sensorNotes" title="Sensörlerle ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 4. Güvenlik Sistemleri -->
+            <div class="form-container section">
+                <div class="section-title">4. Güvenlik Sistemleri</div>
+                <div class="form-row">
+                    <div class="form-col">
+                         <div class="item-group" data-description="Görüntülü güvenlik izleme kamerası.">
+                             <img src="images/security-camera.png" alt="Kamera" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="securityCamera" name="securityCamera_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="securityCamera" class="item-label">Güvenlik Kamerası</label>
+                            <input type="number" name="securityCamera_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                        <div class="item-group" data-description="Anahtarsız (parmak izi, yüz tanıma vb.) kapı kilidi.">
+                            <img src="images/smart-lock.png" alt="Akıllı Kilit" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartDoorLock" name="smartDoorLock_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartDoorLock" class="item-label">Akıllı Kapı Kilidi (Yüz Tanıma, Parmak İzi)</label>
+                            <input type="number" name="smartDoorLock_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="item-group" data-description="Görüntülü ve bildirimli akıllı kapı zili.">
+                            <img src="images/smart-doorbell.png" alt="Akıllı Zil" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartDoorbell" name="smartDoorbell_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartDoorbell" class="item-label">Akıllı Zil</label>
+                            <input type="number" name="smartDoorbell_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                        <div class="form-group">
+                            <div class="checkbox-item" title="Acil durumlarda yardım çağırmak için buton.">
+                                <input type="checkbox" id="panicButton" name="panicButton">
+                                <label for="panicButton">Panik Butonu</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sesli Uyarı Sistemi Kaldırıldı -->
+                <!-- Gece Görüşlü Kameralar Kaldırıldı -->
+
+                <div class="form-group">
+                    <label for="securityNotes">Ekstra Notlar</label>
+                    <textarea id="securityNotes" name="securityNotes" title="Güvenlik sistemleri ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 5. İklimlendirme Teknolojileri -->
+            <div class="form-container section">
+                <div class="section-title">5. İklimlendirme Teknolojileri</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Isıtma/soğutmayı akıllı yöneten termostat.">
+                            <img src="images/smart-thermostat.png" alt="Akıllı Termostat" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartThermostat" name="smartThermostat_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartThermostat" class="item-label">Akıllı Termostat</label>
+                            <input type="number" name="smartThermostat_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+
+                        <div class="item-group" data-description="Radyatörleri ayrı ayrı kontrol eden akıllı vana.">
+                            <img src="images/radiator-valve.png" alt="Akıllı Vana" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="radiatorValve" name="radiatorValve_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="radiatorValve" class="item-label">Akıllı Radyatör Vanası</label>
+                            <input type="number" name="radiatorValve_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Klimaları uzaktan ve otomatik kontrol etme.">
+                            <img src="images/ac-control.png" alt="Klima Kontrol" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="acControl" name="acControl_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="acControl" class="item-label">Klima Kontrolü</label>
+                            <input type="number" name="acControl_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Yerden ısıtma sistemini akıllı kontrol etme.">
+                            <img src="images/floor-heating.png" alt="Yerden Isıtma" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="floorHeating" name="floorHeating_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="floorHeating" class="item-label">Yerden Isıtma Kontrolü</label>
+                            <input type="number" name="floorHeating_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Kombiyi akıllı programlama ve kontrol etme.">
+                            <img src="images/boiler-control.png" alt="Kombi Kontrol" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="boilerControl" name="boilerControl_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="boilerControl" class="item-label">Kombi Kontrolü</label>
+                            <input type="number" name="boilerControl_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-item" title="Her odayı farklı sıcaklıkta ayarlama.">
+                        <input type="checkbox" id="roomBasedHeating" name="roomBasedHeating">
+                        <label for="roomBasedHeating">Oda Bazlı Sıcaklık Kontrolü</label>
+                    </div>
+                </div>
+                 <!-- Hava Temizleme Sistemleri Kaldırıldı -->
+
+                <div class="form-group">
+                    <label for="hvacNotes">Ekstra Notlar</label>
+                    <textarea id="hvacNotes" name="hvacNotes" title="İklimlendirme ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 6. Perde ve Kapı Sistemleri -->
+            <div class="form-container section">
+                <div class="section-title">6. Perde & Kapı Otomasyonu</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Motorlu, uzaktan kontrol edilebilir perdeler.">
+                             <img src="images/smart-curtain.png" alt="Akıllı Perde" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartCurtain" name="smartCurtain_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartCurtain" class="item-label">Akıllı Perde</label>
+                            <input type="number" name="smartCurtain_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Motorlu, uzaktan kontrol edilebilir stor perdeler.">
+                            <img src="images/smart-blinds.png" alt="Akıllı Stor" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartBlinds" name="smartBlinds_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartBlinds" class="item-label">Akıllı Stor</label>
+                            <input type="number" name="smartBlinds_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+
+                        <div class="item-group" data-description="Dikey açılıp kapanan motorlu pencere sistemi.">
+                            <img src="images/guillotine-window.png" alt="Giyotin Pencere" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="guillotineWindow" name="guillotineWindow_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="guillotineWindow" class="item-label">Giyotinli Pencere</label>
+                            <input type="number" name="guillotineWindow_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Motorlu, uzaktan kontrol edilebilir jaluziler.">
+                            <img src="images/smart-jalousie.png" alt="Akıllı Jaluzi" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartJalousie" name="smartJalousie_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartJalousie" class="item-label">Akıllı Jaluzi</label>
+                            <input type="number" name="smartJalousie_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Uzaktan kontrol edilebilir garaj kapısı motoru.">
+                            <img src="images/smart-garage.png" alt="Garaj Kapısı" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartGarage" name="smartGarage_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartGarage" class="item-label">Akıllı Garaj Kapısı</label>
+                            <input type="number" name="smartGarage_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                         <div class="item-group" data-description="Açılır kapanır tavan ve yanları kontrol eden pergola sistemi.">
+                            <img src="images/pergola-curtain.png" alt="Pergola Perde" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="pergolaCurtain" name="pergolaCurtain_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="pergolaCurtain" class="item-label">Pergola Perde</label>
+                            <input type="number" name="pergolaCurtain_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="curtainNotes">Ekstra Notlar</label>
+                    <textarea id="curtainNotes" name="curtainNotes" title="Perde/kapı otomasyonu ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 7. Eğlence ve Multimedya Sistemleri -->
+            <div class="form-container section">
+                <div class="section-title">7. Eğlence & Multimedya Merkezi</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Sesli asistanlı ve müzik çalabilen hoparlör.">
+                            <img src="images/smart-speaker.png" alt="Akıllı Hoparlör" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartSpeaker" name="smartSpeaker_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartSpeaker" class="item-label">Akıllı Hoparlör</label>
+                            <input type="number" name="smartSpeaker_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+
+                        <div class="item-group" data-description="Duvara sabitlenmiş merkezi kontrol tableti.">
+                             <img src="images/wall-tablet.png" alt="Duvar Tableti" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="wallTablet" name="wallTablet_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="wallTablet" class="item-label">Duvara Monte Tablet</label>
+                            <input type="number" name="wallTablet_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Akıllı ev kontrolü için taşınabilir tablet.">
+                            <img src="images/portable-tablet.png" alt="Taşınabilir Tablet" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="portableTablet" name="portableTablet_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="portableTablet" class="item-label">Taşınabilir Tablet</label>
+                            <input type="number" name="portableTablet_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Farklı odalarda senkronize müzik çalma sistemi.">
+                            <img src="images/multiroom-audio.png" alt="Multiroom Ses" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="multiroomAudio" name="multiroomAudio_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="multiroomAudio" class="item-label">Multiroom Ses Sistemi</label>
+                            <input type="number" name="multiroomAudio_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Akıllı TV'leri otomasyona dahil etme.">
+                            <img src="images/smart-tv.png" alt="Akıllı TV Kontrol" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartTV" name="smartTV_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartTV" class="item-label">Akıllı TV Kontrolü</label>
+                            <input type="number" name="smartTV_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Tüm medya cihazlarını tek yerden kontrol etme.">
+                            <img src="images/media-control.png" alt="Medya Kontrol" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="mediaControl" name="mediaControl_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="mediaControl" class="item-label">Medya Kontrol Sistemi</label>
+                            <input type="number" name="mediaControl_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+
+                        <div class="item-group" data-description="Projeksiyon cihazını akıllı kontrol etme.">
+                            <img src="images/projector-control.png" alt="Projektör Kontrol" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="projectorControl" name="projectorControl_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="projectorControl" class="item-label">Akıllı Projektör Kontrolü</label>
+                            <input type="number" name="projectorControl_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Oyun Konsolu Entegrasyonu Kaldırıldı -->
+                 <!-- Ses Yalıtımı Kaldırıldı -->
+
+                <div class="form-group">
+                    <label for="entertainmentNotes">Ekstra Notlar</label>
+                    <textarea id="entertainmentNotes" name="entertainmentNotes" title="Eğlence sistemleri ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 8. Enerji Yönetimi -->
+            <div class="form-container section">
+                <div class="section-title">8. Enerji Optimizasyon Sistemi</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Cihazları uzaktan kontrol eden ve tüketim ölçen priz.">
+                             <img src="images/smart-plug.png" alt="Akıllı Priz" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartPlug" name="smartPlug_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartPlug" class="item-label">Akıllı Priz</label>
+                            <input type="number" name="smartPlug_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                         <div class="item-group" data-description="Genel veya cihaz bazlı enerji tüketimini izler.">
+                            <img src="images/energy-monitor.png" alt="Enerji Monitörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="energyMonitor" name="energyMonitor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="energyMonitor" class="item-label">Enerji Tüketim Monitörü</label>
+                            <input type="number" name="energyMonitor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="solarIntegration">Güneş Enerjisi Entegrasyonu</label>
+                            <select id="solarIntegration" name="solarIntegration" title="Güneş paneli sisteminin akıllı eve entegrasyonu.">
+                                <option value="no" selected>Hayır</option>
+                                <option value="yes">Evet</option>
+                                <option value="future">İleride</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <div class="checkbox-item" title="Elektrikli araçlar için akıllı şarj ünitesi.">
+                                <input type="checkbox" id="smartChargingStation" name="smartChargingStation">
+                                <label for="smartChargingStation">Akıllı Şarj İstasyonu (Elektrikli Araç)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="energyNotes">Ekstra Notlar</label>
+                    <textarea id="energyNotes" name="energyNotes" title="Enerji yönetimi ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+             <!-- 9. Su ve Sulama Sistemleri -->
+            <div class="form-container section">
+                <div class="section-title">9. Su & Sulama Sistemleri</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Bahçe sulamasını otomatik ve akıllı yapan sistem.">
+                            <img src="images/smart-irrigation.png" alt="Akıllı Sulama" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartIrrigation" name="smartIrrigation_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartIrrigation" class="item-label">Akıllı Sulama Sistemi</label>
+                            <input type="number" name="smartIrrigation_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                         <div class="item-group" data-description="Su sızıntılarını algılayıp uyaran sensör.">
+                             <img src="images/water-leak.png" alt="Su Kaçak" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="waterLeakDetector" name="waterLeakDetector_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="waterLeakDetector" class="item-label">Su Kaçağı Detektörü</label>
+                            <input type="number" name="waterLeakDetector_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Ana su girişini uzaktan kapatıp açabilen vana.">
+                             <img src="images/smart-valve.png" alt="Akıllı Vana" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartWaterValve" name="smartWaterValve_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartWaterValve" class="item-label">Akıllı Su Vanası</label>
+                            <input type="number" name="smartWaterValve_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                         <div class="item-group" data-description="Bitkilerin toprak nemini ve ihtiyacını ölçer.">
+                            <img src="images/plant-sensor.png" alt="Bitki Sensörü" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="plantSensor" name="plantSensor_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="plantSensor" class="item-label">Akıllı Bitki Sensörü</label>
+                            <input type="number" name="plantSensor_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox-item" title="Yağmur yağdığında sulamayı durduran sensör.">
+                        <input type="checkbox" id="rainSensor" name="rainSensor">
+                        <label for="rainSensor">Yağmur Sensörü</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="waterNotes">Ekstra Notlar</label>
+                    <textarea id="waterNotes" name="waterNotes" title="Su/sulama sistemleri ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 10. Entegrasyon ve Otomasyon -->
+            <div class="form-container section">
+                <div class="section-title">10. Entegrasyon & Otomasyon</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <div class="checkbox-item" title="Tüm akıllı cihazları yöneten merkezi ünite.">
+                                <input type="checkbox" id="centralHub" name="centralHub">
+                                <label for="centralHub">Merkezi Kontrol Ünitesi/Hub</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-item" title="Apple HomeKit ile uyumluluk ve entegrasyon.">
+                                <input type="checkbox" id="appleHomekit" name="appleHomekit">
+                                <label for="appleHomekit">Apple HomeKit</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-item" title="Google Home ile uyumluluk ve entegrasyon.">
+                                <input type="checkbox" id="googleHome" name="googleHome">
+                                <label for="googleHome">Google Home</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-item" title="Amazon Alexa ile uyumluluk ve entegrasyon.">
+                                <input type="checkbox" id="amazonAlexa" name="amazonAlexa">
+                                <label for="amazonAlexa">Amazon Alexa</label>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="checkbox-item" title="Yapay zeka destekli proaktif otomasyonlar.">
+                                <input type="checkbox" id="aiAssistant" name="aiAssistant">
+                                <label for="aiAssistant">Yapay Zeka Asistan Entegrasyonu</label>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="checkbox-item" title="Sistemi sesli komutlarla yönetebilme.">
+                                <input type="checkbox" id="voiceControl" name="voiceControl">
+                                <label for="voiceControl">Sesli Komut Kontrolü</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Sahne ve Senaryo Oluşturma</label>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="morningRoutine" name="morningRoutine">
+                                <label for="morningRoutine">Sabah Rutini</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="eveningRoutine" name="eveningRoutine">
+                                <label for="eveningRoutine">Akşam Rutini</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="sleepMode" name="sleepMode">
+                                <label for="sleepMode">Uyku Modu</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="homeAwayMode" name="homeAwayMode">
+                                <label for="homeAwayMode">Evde/Dışarıda Modu</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="vacationMode" name="vacationMode">
+                                <label for="vacationMode">Tatil Modu</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="guestMode" name="guestMode">
+                                <label for="guestMode">Misafir Modu</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="movieMode" name="movieMode">
+                                <label for="movieMode">Film İzleme Modu</label>
+                            </div>
+                            <div class="checkbox-item" title="Belirli durumlara özel ön ayarlı otomasyon senaryosu.">
+                                <input type="checkbox" id="partyMode" name="partyMode">
+                                <label for="partyMode">Parti Modu</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Otomatik Otomasyon Kuralları Oluşturma Kaldırıldı -->
+                 <div class="form-group">
+                    <div class="checkbox-item" title="Evinizi mobil uygulama ile uzaktan kontrol etme.">
+                        <input type="checkbox" id="remoteAccess" name="remoteAccess">
+                        <label for="remoteAccess">Uzaktan Erişim (Mobil Uygulama)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="integrationNotes">Ekstra Notlar</label>
+                    <textarea id="integrationNotes" name="integrationNotes" title="Entegrasyon ve otomasyon ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+             <!-- 11. Akıllı Beyaz Eşya -->
+            <div class="form-container section">
+                <div class="section-title">11. Akıllı Beyaz Eşya</div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="item-group" data-description="Uzaktan kontrol ve bildirim özellikli buzdolabı.">
+                             <img src="images/smart-fridge.png" alt="Buzdolabı" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartRefrigerator" name="smartRefrigerator_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartRefrigerator" class="item-label">Buzdolabı</label>
+                            <input type="number" name="smartRefrigerator_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                         <div class="item-group" data-description="Uzaktan kontrol ve bildirim özellikli çamaşır makinesi.">
+                            <img src="images/smart-washing.png" alt="Çamaşır Mak." class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartWashingMachine" name="smartWashingMachine_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartWashingMachine" class="item-label">Çamaşır Makinesi</label>
+                            <input type="number" name="smartWashingMachine_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                         <div class="item-group" data-description="Uzaktan kontrol ve bildirim özellikli bulaşık makinesi.">
+                            <img src="images/smart-dishwasher.png" alt="Bulaşık Mak." class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartDishwasher" name="smartDishwasher_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartDishwasher" class="item-label">Bulaşık Makinesi</label>
+                            <input type="number" name="smartDishwasher_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                    </div>
+
+                    <div class="form-col">
+                        <div class="item-group" data-description="Uzaktan kontrol ve bildirim özellikli fırın/ocak.">
+                            <img src="images/smart-oven.png" alt="Fırın" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartOven" name="smartOven_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartOven" class="item-label">Fırın/Ocak</label>
+                            <input type="number" name="smartOven_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                         <div class="item-group" data-description="Otomatik temizlik yapan akıllı robot süpürge.">
+                            <img src="images/robot-vacuum.png" alt="Robot Süpürge" class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="robotVacuum" name="robotVacuum_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="robotVacuum" class="item-label">Robot Süpürge</label>
+                            <input type="number" name="robotVacuum_quantity" min="0" value="0" class="item-quantity">
+                            <div class="item-tooltip"></div>
+                        </div>
+                         <div class="item-group" data-description="Programlanabilir ve uzaktan kontrol edilebilir kahve makinesi.">
+                            <img src="images/smart-coffee.png" alt="Kahve Mak." class="item-image"> <!-- Placeholder image path -->
+                            <input type="checkbox" id="smartCoffeeMachine" name="smartCoffeeMachine_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
+                            <label for="smartCoffeeMachine" class="item-label">Akıllı Kahve Makinesi</label>
+                            <input type="number" name="smartCoffeeMachine_quantity" min="0" value="0" class="item-quantity">
+                             <div class="item-tooltip"></div>
+                       </div>
+                         <!-- Akıllı Mikrodalga Fırın Kaldırıldı -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="applianceNotes">Ekstra Notlar</label>
+                    <textarea id="applianceNotes" name="applianceNotes" title="Beyaz eşya entegrasyonu ile ilgili ek istekleriniz."></textarea>
+                </div>
+            </div>
+
+            <!-- 11. Bütçe & Zamanlama Bölümü Kaldırıldı -->
+
+            <!-- 12. Ek Yorumlar veya İstekler -->
+            <div class="form-container section">
+                <div class="section-title">12. Ek Yorumlar & İstekler</div>
+                <div class="form-group">
+                    <label for="additionalComments">Özel Talepler ve Diğer Bilgiler</label>
+                    <textarea id="additionalComments" name="additionalComments" title="Formda belirtilmeyen diğer istekleriniz veya notlarınız."></textarea>
+                </div>
+                <!-- Özel İndirim Talepleri Kaldırıldı -->
+                <div class="form-group">
+                    <label for="references">Referanslar (Varsa belirtin)</label>
+                    <textarea id="references" name="references" title="Daha önceki projelerimizden referans talebiniz veya bildiğiniz referanslar."></textarea>
+                </div>
+            </div>
+
+
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">Formu Gönder</button>
+                <p class="note">Formu göndererek EvoHaus ile geleceğin akıllı yaşamına adım atın.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleQuantity(checkboxElem) {
+            let itemGroup = checkboxElem.closest('.item-group');
+            let quantityInput = itemGroup.querySelector('.item-quantity');
+            if (checkboxElem.checked) {
+                quantityInput.classList.add('active');
+                 // Optionally set quantity to 1 when checked
+                 if (parseInt(quantityInput.value) === 0) {
+                    quantityInput.value = 1;
+                 }
+            } else {
+                quantityInput.classList.remove('active');
+                quantityInput.value = 0; // Reset quantity when unchecked
+            }
+        }
+
+        document.querySelectorAll('.item-group').forEach(group => {
+            const tooltip = group.querySelector('.item-tooltip');
+            const description = group.dataset.description;
+
+            if (tooltip && description) {
+                tooltip.textContent = description;
+            }
+
+            // Tooltip display logic for both hover and touch
+            let touchTimeout;
+            group.addEventListener('mouseenter', () => {
+                 if (tooltip) tooltip.style.display = 'block';
+            });
+            group.addEventListener('mouseleave', () => {
+                 if (tooltip) tooltip.style.display = 'none';
+            });
+             group.addEventListener('touchstart', (e) => {
+                // Prevent triggering mouseenter after touch
+                e.preventDefault();
+                // Hide other tooltips
+                document.querySelectorAll('.item-tooltip').forEach(t => {
+                    if (t !== tooltip) t.style.display = 'none';
+                });
+                 if (tooltip) {
+                    tooltip.style.display = 'block';
+                    // Hide tooltip after a delay on touch devices
+                    clearTimeout(touchTimeout); // Clear previous timeout if any
+                    touchTimeout = setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                }
+             }, { passive: false }); // Need passive:false to use preventDefault
+        });
+
+        // Optional: Hide tooltip if user touches elsewhere
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.item-group')) {
+                clearTimeout(touchTimeout); // Clear any pending timeouts
+                document.querySelectorAll('.item-tooltip').forEach(t => t.style.display = 'none');
+            }
+        });
+    </script>
+</body>
+</html>
