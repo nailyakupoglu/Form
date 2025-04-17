@@ -1,7 +1,9 @@
 Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bölümünün adını İklimlendirme Teknolojileri olarak değiştirdim. Ayrıca sonraki bölümlerin numaralarını güncelledim.
 
 <!DOCTYPE html>
-<html lang="tr"> 
+<html lang="tr">
+    <!DOCTYPE html>
+    <html lang="tr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +24,7 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
             <p>Kişiselleştirilmiş akıllı yaşam çözümleriniz için aşağıdaki formu doldurarak geleceğin yaşam alanına adım atın.</p>
         </div>
 
-        <form id="evohaus-comprehensive-form" action="https://n8n.evohaus.org/webhook-test/evolution-webhook" method="POST">
+        <form id="evohaus-comprehensive-form" action="https://n8n.evohaus.org/webhook-test/7c86ed61-5513-4391-ac4c-de84e90658ae" method="POST">
             <!-- 1. Müşteri Bilgileri -->
             <div class="form-container section">
                 <div class="section-title">1. Müşteri Bilgileri</div>
@@ -402,7 +404,7 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                          <div class="item-group" data-description="Açılır kapanır tavan ve yanları kontrol eden pergola sistemi.">
                             <img src="images/pergola-curtain.png" alt="Pergola Perde" class="item-image"> <!-- Placeholder image path -->
                             <input type="checkbox" id="pergolaCurtain" name="pergolaCurtain_checkbox" class="item-checkbox" onclick="toggleQuantity(this)">
-                            <label for="pergolaCurtain" class="item-label">Pergola Perde</label>
+                            <label for="pergolaCurtain" class="item-label">Pergola</label>
                             <input type="number" name="pergolaCurtain_quantity" min="0" value="0" class="item-quantity">
                              <div class="item-tooltip"></div>
                        </div>
@@ -621,11 +623,12 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                                 <label for="aiAssistant">Yapay Zeka Asistan Entegrasyonu</label>
                             </div>
                         </div>
-                         <div class="form-group">
-                            <div class="checkbox-item" title="Sistemi sesli komutlarla yönetebilme.">
-                                <input type="checkbox" id="voiceControl" name="voiceControl">
-                                <label for="voiceControl">Sesli Komut Kontrolü</label>
-                            </div>
+                        <!-- Otomatik Otomasyon Kuralları Oluşturma Kaldırıldı -->
+                        <div class="form-group">
+                           <div class="checkbox-item" title="Evinizi mobil uygulama ile uzaktan kontrol etme.">
+                               <input type="checkbox" id="remoteAccess" name="remoteAccess">
+                               <label for="remoteAccess">Uzaktan Erişim (Mobil Uygulama)</label>
+                           </div>
                         </div>
                     </div>
 
@@ -665,15 +668,8 @@ Tamam, Güvenlik ve Sensörler bölümlerini ayırdım ve Isıtma & Soğutma bö
                                 <label for="partyMode">Parti Modu</label>
                             </div>
                         </div>
-                    </div>
-                </div>
-                 <!-- Otomatik Otomasyon Kuralları Oluşturma Kaldırıldı -->
-                 <div class="form-group">
-                    <div class="checkbox-item" title="Evinizi mobil uygulama ile uzaktan kontrol etme.">
-                        <input type="checkbox" id="remoteAccess" name="remoteAccess">
-                        <label for="remoteAccess">Uzaktan Erişim (Mobil Uygulama)</label>
-                    </div>
-                </div>
+                    </div>                  
+                               </div>
 
                 <div class="form-group">
                     <label for="integrationNotes">Ekstra Notlar</label>
